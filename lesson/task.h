@@ -6,11 +6,11 @@ class Task
 {
 
 public:
-    explicit Task(int, QString, int, int);
+    explicit Task(int, QString, QString, int);
 
     int exercise_id;
     QString exercise_text;
-    int exercise_category;
+    QString exercise_translation;
     int exercise_type;
 
 };

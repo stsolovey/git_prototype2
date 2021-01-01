@@ -23,7 +23,7 @@ Keys.onPressed: {
                     if (Util.textAreaEnabled)
                         {
                             itemId.checkButtonClicked()
-                            console.log("itemId.checkButtonClicked():")
+                            //console.log("itemId.checkButtonClicked():")
                         }
                 }
             }
@@ -35,7 +35,7 @@ Keys.onPressed: {
 }*/
 
 onTextChanged: {
-    console.log("underTaskLoader.source:", underTaskLoader.source)
+    //console.log("underTaskLoader.source:", underTaskLoader.source)
     Util.ex1_task_answer = text
     /*console.log("Text has changed to:", text)
     if (text == "")

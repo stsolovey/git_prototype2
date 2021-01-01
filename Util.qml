@@ -16,6 +16,7 @@ Item {
     property bool endOftheLesson: false
     property string textOfTheExcercise: "textOfTheExcercise"
     property string textOfTheReview: "textOfTheReview"
+    property string textOfTheLessonReview: "textOfTheLessonReview"
     property string taskText: "taskText"
     property string rightAnswerText: "rightAnswer"
     property string linkPath: "main.qml"
@@ -24,7 +25,7 @@ Item {
     property string ex1_task_answer: ""
     property string title: "Type in translation to English"
     property string placeholder: "Type in English"
-    /*function getPathToTheExercisePage(type)
+    function getPathToTheExercisePage(type)
     {
         switch(type)
         {
@@ -44,7 +45,7 @@ Item {
             linkPath = "main.qml"
             return
         }
-    }*/
+    }
 
     Connections { // устанавливаем соединение
         target: appCore // целевой объект для соединения
@@ -56,6 +57,8 @@ Item {
             typeOfTheExercise = exType
             textOfTheExcercise = exText
             getPathToTheExercisePage(exType)
+            //console.log("onSendExercis", typeOfTheExercise)
+            //console.log("linkPath", linkPath)
         }
         function onSendProgressBarValue (pbv) {
             progressBar_value = pbv
@@ -69,7 +72,8 @@ Item {
         function onEndOfTheLesson(review) {
             endOftheLesson = true
             linkPath = "/review/lesson_review.qml"
-            textOfTheReview = review
+            console.log("onEndOfTheLesson review", endOftheLesson, review)
+            textOfTheLessonReview = review
         }
         function onSendUserName(name) {
             userName = name
@@ -77,7 +81,7 @@ Item {
     }
 
     onEx1_task_answerChanged: {
-        console.log("ex1_task_answer is", ex1_task_answer)
+        //console.log("ex1_task_answer is", ex1_task_answer)
         if (ex1_task_answer=="") {
             isTheCheckButtonActive = false
         } else {
@@ -88,4 +92,28 @@ Item {
 
     }
 
+    function setDefaultSettings() {
+
+        typeOfTheExercise = 0
+        points =  0
+        lesson_lenght =  0
+        progressBar_value =  0
+        valueReview =  false
+        isTheCheckButtonActive =  false
+        isTheCheckLoaderActive =  true
+        textAreaEnabled =  true
+        endOftheLesson =  false
+        textOfTheExcercise =  "textOfTheExcercise"
+        textOfTheReview =  "textOfTheReview"
+        textOfTheLessonReview =  "textOfTheLessonReview"
+        taskText = "taskText"
+        rightAnswerText =  "rightAnswer"
+        linkPath = "main.qml"
+        userName = ""
+        currentCourse = "ru_en_categories"
+        ex1_task_answer = ""
+        title = "Type in translation to English"
+        placeholder = "Type in English"
+
+    }
 }

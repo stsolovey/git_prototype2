@@ -14,6 +14,7 @@ SOURCES += \
         lesson/lesson.cpp \
         lesson/listmodel_course.cpp \
         lesson/task.cpp \
+        lesson/task2.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -36,4 +37,5 @@ HEADERS += \
     database/getquery.h \
     lesson/lesson.h \
     lesson/listmodel_course.h \
-    lesson/task.h
+    lesson/task.h \
+    lesson/task2.h

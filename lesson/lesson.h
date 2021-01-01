@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QSqlQuery>
 #include "task.h"
+#include "task2.h"
 
 
 class Lesson : public QObject
@@ -16,6 +17,7 @@ public:
     QVector<Task> tasks;
     QVector<Task> tempLesson;
     QVector<Task> getLesson(int id_category);
+    QVector<Task2> tasks2;
 signals:
 
 };

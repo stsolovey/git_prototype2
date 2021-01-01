@@ -10,6 +10,7 @@ class AppCore : public QObject
 
 public:
     AppCore(QObject *parent = nullptr);
+    ~AppCore();
     void createClass(int id_category);
     void correctClass(int index);
     void setTasksLeft(int tLeft);
@@ -25,6 +26,9 @@ private:
     QVector<Task> lesson;
     QVector<Task> tempLesson;
 
+    QVector<Task2> statistic;
+    void addLessonStatistic(QVector<Task2> stat);
+
 signals:
     void sendProgressBarValue(int progressBarValue);
     void rightAnswer(QString rightAns);
@@ -37,11 +41,9 @@ signals:
     void sendReview(bool value, QString message);
     void endOfTheLesson(QString);
 public slots:
-    //void classStarted();
-    void answerGiven(QString textOfTheExercise, QString answerString);
+
     void askUserName();
     void askActualDirection();
-    void askForCourse();
     void askForClass(int id_category);
     void askForExercise();
     void checkAnswer(QString answer);

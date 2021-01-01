@@ -44,7 +44,8 @@ property string query: ""
                     anchors.verticalCenter: parent.verticalCenter
                     text:"To Class >>"
                     onClicked: {
-                        console.log("id category: ", id_cat)
+                        //console.log("id category: ", id_cat)
+                        appCore.askForClass(id_cat);
                         appCore.askForExercise();
                         loader.source = Util.linkPath
                     }

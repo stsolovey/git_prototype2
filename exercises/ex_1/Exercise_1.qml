@@ -50,17 +50,19 @@ Item {
     onNextButtonClicked:
     {
         if (Util.endOftheLesson) {
-        appCore.askForExercise()
-        taskLoader.hide()
-        Util.textAreaEnabled = true
-        Util.ex1_task_answer = ""
-        taskLoader.show("Exercise_1_task_text_area.qml")
-        underTaskLoader.hide()
-        underTaskLoader.show("Exercise_1_review_check.qml")
+            taskLoader.hide()
+            underTaskLoader.hide()
+            loader.source = "/review/lesson_review.qml"
+            //console.log("onNextButtonClicked, expected true:", Util.endOftheLesson)
         } else {
-        taskLoader.hide()
-        underTaskLoader.hide()
-        loader.source = "/review/lesson_review.qml"
+            //console.log("onNextButtonClicked, expected false:", Util.endOftheLesson)
+            appCore.askForExercise()
+            taskLoader.hide()
+            Util.textAreaEnabled = true
+            Util.ex1_task_answer = ""
+            taskLoader.show("Exercise_1_task_text_area.qml")
+            underTaskLoader.hide()
+            underTaskLoader.show("Exercise_1_review_check.qml")
         }
 
     }
