@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>exercises/ex2.qml</file>
+        <file>exercises/ex3.qml</file>
+        <file>Util.qml</file>
+        <file>direction/dir1.qml</file>
+        <file>review/answer_review.qml</file>
+        <file>review/lesson_review.qml</file>
+        <file>courses/course1.qml</file>
+        <file>courses/course2.qml</file>
+        <file>mainPageContent.qml</file>
+        <file>exercises/ex_1/Exercise_1.qml</file>
+        <file>exercises/ex_1/Exercise_1_review_check.qml</file>
+        <file>exercises/ex_1/Exercise_1_review_right_answer.qml</file>
+        <file>exercises/ex_1/Exercise_1_review_wrong_answer.qml</file>
+        <file>exercises/ex_1/Exercise_1_task_text_area.qml</file>
+        <file>exercises/ex_1/Exercise_1_word_bank.qml</file>
+    </qresource>
+</RCC>
