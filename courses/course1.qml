@@ -49,6 +49,9 @@ property string query: ""
                         appCore.askForExercise();
                         loader.source = Util.linkPath
                     }
+                    Component.onCompleted: {
+
+                    }
                 }
         }
 

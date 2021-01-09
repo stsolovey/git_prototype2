@@ -9,13 +9,15 @@ CONFIG += c++11
 SOURCES += \
         appcore.cpp \
         database/connection.cpp \
+        database/statistic.cpp \
         lesson/getlesson.cpp \
-        database/getquery.cpp \
         lesson/lesson.cpp \
         lesson/listmodel_course.cpp \
         lesson/task.cpp \
         lesson/task2.cpp \
-        main.cpp
+        lesson/task3.cpp \
+        main.cpp \
+        statistics/rebuildsentencestatcombinations.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,9 +35,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     appcore.h \
     database/connection.h \
+    database/statistic.h \
     lesson/getlesson.h \
-    database/getquery.h \
     lesson/lesson.h \
     lesson/listmodel_course.h \
     lesson/task.h \
-    lesson/task2.h
+    lesson/task2.h \
+    lesson/task3.h \
+    statistics/rebuildsentencestatcombinations.h

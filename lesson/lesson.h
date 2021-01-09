@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include "task.h"
 #include "task2.h"
+#include "task3.h"
 
 
 class Lesson : public QObject

@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include "lesson/lesson.h"
+#include "statistics/rebuildsentencestatcombinations.h"
 class AppCore : public QObject
 {
     Q_OBJECT
@@ -19,12 +20,13 @@ private:
     int userId;
     int exerciseNumber;
     int points;
+    int lesson_lenght;
 
     QString userName;
     QString actualDirection;
 
     QVector<Task> lesson;
-    QVector<Task> tempLesson;
+    //QVector<Task> tempLesson;
 
     QVector<Task2> statistic;
     void addLessonStatistic(QVector<Task2> stat);
@@ -42,6 +44,7 @@ signals:
     void endOfTheLesson(QString);
 public slots:
 
+    void rebuildStatSentences();
     void askUserName();
     void askActualDirection();
     void askForClass(int id_category);

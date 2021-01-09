@@ -8,17 +8,19 @@
 #include <QDebug>
 #include <QVector>
 #include "lesson/task2.h"
+#include "lesson/task3.h"
 
 
-class GetQuery: public QObject
+class Statistic: public QObject
 {
     Q_OBJECT
 
 public:
     QSqlQuery query;
-    GetQuery(QObject *parent = 0);
+    Statistic(QObject *parent = 0);
     //QSqlQuery get(QString);
     void addLessonStatistic(QVector<Task2> stat);
+    void addLessonStatistic2(QVector<Task2> statistic);
 };
 
 #endif // GETLESSON_H

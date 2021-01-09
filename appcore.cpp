@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <QSqlQuery>
 #include "lesson/lesson.h"
+#include "database/statistic.h"
 AppCore::AppCore(QObject* parent) : QObject(parent)
 {
     userId = 1;
@@ -22,6 +23,7 @@ void AppCore::createClass(int id_category)
     Lesson ls;
 
     lesson = ls.getLesson(id_category);
+    lesson_lenght = lesson.length();
     emit sendLessonInfo(lesson.length());
 }
 
@@ -45,7 +47,7 @@ void AppCore::askActualDirection()
 
 void AppCore::askForClass(int id_category)
 {
-    qDebug() << "section: " << id_category; // что за секция, где это?
+    //qDebug() << "section: " << id_category; // что за секция, где это?
     statistic.clear();
     createClass(id_category);
 }
@@ -63,41 +65,55 @@ void AppCore::askForExercise()
 
 void AppCore::checkAnswer(QString answer)
 {
-    int staticticRate;
-    qDebug() << "lesson.at(exerciseNumber).exercise_text" << lesson.at(exerciseNumber).exercise_text;
-    qDebug() << "lesson.at(exerciseNumber).exercise_translation" << lesson.at(exerciseNumber).exercise_translation;
-    qDebug() << "answer" << answer;
-    if (answer=="1" or answer == lesson.at(exerciseNumber).exercise_translation)
+    //qDebug() << "START exerciseNumber " << exerciseNumber;
+    //qDebug() << "START lesson.length() " << lesson.length();
+    //qDebug() << "START lesson_lenght " << lesson_lenght << Qt::endl;
+    Task2 t2;
+    t2.setDirection(1);
+    t2.setCourse(1);
+    t2.setSentence(lesson.at(exerciseNumber).exercise_id);
+    t2.setType(1);
+    bool answer_status;
+
+    if (answer == "1" or answer == lesson.at(exerciseNumber).exercise_translation)
     {
-        staticticRate = 1;
+        answer_status = true;
         correctClass(exerciseNumber);
+        if(exerciseNumber == lesson.length())
+            exerciseNumber = 0;
         emit sendReview(true, "You're right!");
         emit sendProgressBarValue(++m_progressBarValue);
+        lesson_lenght--;
+
     }
     else
     {
-        staticticRate = -2;
+        answer_status = false;
+
         emit sendReview(false, "Your answer: " + answer + "\nRight answer: " + lesson.at(exerciseNumber).exercise_translation);
+        if(exerciseNumber == lesson.length() or lesson.length() == 1)
+            exerciseNumber = 0;
+        else
+            exerciseNumber++;
     }
 
-    statistic.append(Task2{1,1,1,1,1,staticticRate});
+    t2.setAnswer_status(answer_status);
+    statistic.append( t2);
 
-    if (lesson.length()==0)
+    if (lesson_lenght==0)
     {
         emit endOfTheLesson("You earned " +  QString::number(points) + " XP");
-        addLessonStatistic(statistic);
+        Statistic s;
+        s.addLessonStatistic2(statistic);
     }
-    else if (exerciseNumber<lesson.length()-1)
-        ++exerciseNumber;
-    else
-        exerciseNumber=0;
-    qDebug() << "exerciseNumber " << exerciseNumber;
-    qDebug() << "lesson.length() " << lesson.length();
+
+    //qDebug() << "END exerciseNumber " << exerciseNumber;
+    //qDebug() << "END lesson.length() " << lesson.length();
+    //qDebug() << "END lesson_lenght " << lesson_lenght << Qt::endl;
 }
 
 void AppCore::addLessonStatistic(QVector<Task2> stat)
 {
-
     QSqlQuery query;
     QString queryString(
         "INSERT INTO public.user_slusla_stat (direction, course, category, sentence, type_of_exercise, rating) "
@@ -109,6 +125,11 @@ void AppCore::addLessonStatistic(QVector<Task2> stat)
                        .arg(a.category())
                        .arg(a.sentence())
                        .arg(a.type())
-                       .arg(a.rating()));
+                       .arg(a.answer_status()));
     }
+}
+
+void AppCore::rebuildStatSentences()
+{
+    RebuildSentenceStatCombinations r;
 }
