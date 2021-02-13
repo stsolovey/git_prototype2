@@ -6,41 +6,34 @@ Item {
     anchors.centerIn: parent
     Text {
         id: textid
-        anchors.top: parent.top
+        anchors.bottom: btn1.top
         anchors.horizontalCenter: parent.horizontalCenter
-        text: Util.userName
+        anchors.bottomMargin: windowid.height/4
+        text: "Learn a language. Forever."
+
     }
 
     Button
     {
         id: btn1
-        //anchors.top: parent.top
-        anchors.centerIn: parent
-        text: "To Course 1"
+        width: btn2.width
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: btn2.top
+        anchors.bottomMargin: 15
+        text: "GET STARTED"
         onClicked: {
-            loader.source = "/courses/course1.qml"
+            loader.source = "/get_started/registration.qml"
         }
     }
     Button
     {
         id: btn2
-        anchors.top: btn1.bottom
+        anchors.bottom: parent.bottom
         anchors.horizontalCenter: btn1.horizontalCenter
-        anchors.topMargin: 15
-        text: "To Course 2"
+        anchors.bottomMargin: windowid.height/4
+        text: "I ALREADY HAVE AN ACCOUNT"
         onClicked: {
-            appCore.rebuildStatSentences()
-        }
-    }
-    Button
-    {
-        id: btn3
-        anchors.top: btn2.bottom
-        anchors.horizontalCenter: btn1.horizontalCenter
-        anchors.topMargin: 15
-        text: "Rebuild"
-        onClicked: {
-            appCore.rebuildStatSentences()
+            loader.source = "/login_form.qml"
         }
     }
 }

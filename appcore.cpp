@@ -3,8 +3,20 @@
 #include <QSqlQuery>
 #include "lesson/lesson.h"
 #include "database/statistic.h"
+#include "database/connection.h"
+#include "database/connection.h"
+#include "auth/userlogin.h"
+#include "auth/createaccount.h"
+#include "auth/userregisterdata.h"
+#include "auth/emailvalidate.h"
+#include "auth/generaterandomusername.h"
+#include "auth/checkifuserexists.h"
+#include "auth/loginvalidate.h"
+#include "auth/passwordvalidate.h"
+
 AppCore::AppCore(QObject* parent) : QObject(parent)
 {
+    Connection cn;
     userId = 1;
     userName = "NameOfUser";
     actualDirection = "ru_en";
@@ -17,11 +29,9 @@ AppCore::~AppCore()
 
 void AppCore::createClass(int id_category)
 {
-
     m_progressBarValue = 0;
     points = 15;
     Lesson ls;
-
     lesson = ls.getLesson(id_category);
     lesson_lenght = lesson.length();
     emit sendLessonInfo(lesson.length());
@@ -32,22 +42,14 @@ void AppCore::correctClass(int index)
     lesson.remove(exerciseNumber);
 }
 
-
-
-void AppCore:: askUserName(){
-    emit sendUserName(userName);
-}
-
-void AppCore::askActualDirection()
+void AppCore::createDefaultAccount()
 {
-    emit sendActualDirection(actualDirection);
+    GenerateRandomUsername gru;
+    qDebug() << gru.generate();
 }
-
-
 
 void AppCore::askForClass(int id_category)
 {
-    //qDebug() << "section: " << id_category; // что за секция, где это?
     statistic.clear();
     createClass(id_category);
 }
@@ -65,9 +67,6 @@ void AppCore::askForExercise()
 
 void AppCore::checkAnswer(QString answer)
 {
-    //qDebug() << "START exerciseNumber " << exerciseNumber;
-    //qDebug() << "START lesson.length() " << lesson.length();
-    //qDebug() << "START lesson_lenght " << lesson_lenght << Qt::endl;
     Task2 t2;
     t2.setDirection(1);
     t2.setCourse(1);
@@ -106,28 +105,90 @@ void AppCore::checkAnswer(QString answer)
         Statistic s;
         s.addLessonStatistic2(statistic);
     }
-
-    //qDebug() << "END exerciseNumber " << exerciseNumber;
-    //qDebug() << "END lesson.length() " << lesson.length();
-    //qDebug() << "END lesson_lenght " << lesson_lenght << Qt::endl;
 }
 
-void AppCore::addLessonStatistic(QVector<Task2> stat)
+void AppCore::userRegistration(int age, QString login, QString email, QString password)
 {
-    QSqlQuery query;
-    QString queryString(
-        "INSERT INTO public.user_slusla_stat (direction, course, category, sentence, type_of_exercise, rating) "
-        "VALUES ( %1, %2, %3, %4, %5, %6)");
-    for (auto a : stat)
+    qDebug() << "age " << age << "login" << login << "email" << email << "password" << password;
+    UserRegisterData urd(age, login, email, password);
+    CreateAccount ca;
+    ca.create(urd);
+    //if (ca.create(urd))
+}
+
+void AppCore::userLogin()
+{
+    UserLogin ul;
+    emit attemptToLogin(ul.login());
+}
+
+void AppCore::checkEmail(QString email)
+{
+    EmailValidate ev;
+    if (ev.validate(email))
     {
-        query.exec(queryString.arg(a.direction())
-                       .arg(a.course())
-                       .arg(a.category())
-                       .arg(a.sentence())
-                       .arg(a.type())
-                       .arg(a.answer_status()));
+        emit emailValidation(true);
+        qDebug() << "emails is valid" << true;
+        CheckIfUserExists cifue;
+        if (cifue.checkIfEmailExists(email))
+        {
+            emit emailExists(true);
+            qDebug() << "email exists" << true;
+        }
+        else
+        {
+            emit emailExists(false);
+            qDebug() << "email does not exist" << false;
+        }
+    }
+    else
+    {
+        emit emailValidation(false);
+        qDebug() << "emails is invalid" << false;
     }
 }
+
+void AppCore::checkLogin(QString login)
+{
+    LoginValidate lv;
+    if (lv.validate(login))
+    {
+        emit loginValidation(true);
+        qDebug() << "login is valid" << true;
+        CheckIfUserExists ciue;
+        if(ciue.checkIfLoginExists(login))
+        {
+            emit loginExists(true);
+            qDebug() << "login exists" << true;
+        }
+        else
+        {
+            emit loginExists(false);
+            qDebug() << "login does not exist" << false;
+        }
+    }
+    else
+    {
+        emit loginValidation(false);
+        qDebug() << "login is not valid" << false;
+    }
+}
+
+void AppCore::checkPassword(QString password)
+{
+    PasswordValidate pv;
+    if (pv.validate(password))
+    {
+        emit passwordValidation(true);
+        qDebug() << "password is valid";
+    }
+    else
+    {
+        emit passwordValidation(false);
+        qDebug() << "pass is invalid";
+    }
+}
+
 
 void AppCore::rebuildStatSentences()
 {

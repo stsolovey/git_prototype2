@@ -24,16 +24,3 @@ signals:
 };
 
 #endif // LESSON_H
-
-/*
-     typedef struct Lesson {
-        int lessonId;
-        QString lessonName;
-        //QStringList wordsOfTheExercise;
-    }Lesson;
-    typedef struct Task {
-        int typeOfTheExercise;
-        QString textOfTheExercise;
-        //QStringList wordsOfTheExercise;
-    }Task;
- * */

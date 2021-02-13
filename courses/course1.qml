@@ -43,6 +43,7 @@ property string query: ""
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     text:"To Class >>"
+                    enabled: false
                     onClicked: {
                         //console.log("id category: ", id_cat)
                         appCore.askForClass(id_cat);
@@ -50,7 +51,12 @@ property string query: ""
                         loader.source = Util.linkPath
                     }
                     Component.onCompleted: {
-
+                        if (id_cat === 1)
+                            btbID.enabled = true
+                        else if (enabled_category > 0)
+                            btbID.enabled = true
+                        else
+                            btbID.enabled = false
                     }
                 }
         }

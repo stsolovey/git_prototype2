@@ -4,7 +4,7 @@
 #include <QQmlContext>
 #include "appcore.h"
 //#include "connection.h"
-#include "database/connection.h"
+
 #include "lesson/listmodel_course.h"
 int main(int argc, char *argv[])
 {
@@ -21,16 +21,14 @@ int main(int argc, char *argv[])
 
     qmlRegisterSingletonType(QUrl("qrc:/Util.qml"), "Util", 1, 0, "Util");
 
+    /*****/
     QQmlApplicationEngine engine;
-
     QQmlContext *context = engine.rootContext();
+    /*****/
 
-    Connection cn;
-    //context->setContextProperty("database", &cn);
-
+    /*****/
     AppCore appCore;
     context->setContextProperty("appCore", &appCore);
-
     /*****/
 
 

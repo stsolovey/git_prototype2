@@ -16,5 +16,9 @@
         <file>exercises/ex_1/Exercise_1_review_wrong_answer.qml</file>
         <file>exercises/ex_1/Exercise_1_task_text_area.qml</file>
         <file>exercises/ex_1/Exercise_1_word_bank.qml</file>
+        <file>mainPageContent_old.qml</file>
+        <file>get_started/registration.qml</file>
+        <file>default_page.qml</file>
+        <file>get_started/user_login.qml</file>
     </qresource>
 </RCC>

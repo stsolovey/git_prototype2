@@ -3,6 +3,10 @@ import QtQuick 2.0
 
 Item {
 
+    Component.onCompleted: {
+
+        console.log("Util is working")
+    }
     property int appWidth: 640
     property int appHeight: 480
     property int typeOfTheExercise: 0
@@ -14,12 +18,17 @@ Item {
     property bool isTheCheckLoaderActive: true
     property bool textAreaEnabled: true
     property bool endOftheLesson: false
+    property bool loginExists: true
+    property bool loginIsValid: false
+    property bool emailExists: true
+    property bool emailIsValid: false
+    property bool passwordIsValid: false
     property string textOfTheExcercise: "textOfTheExcercise"
     property string textOfTheReview: "textOfTheReview"
     property string textOfTheLessonReview: "textOfTheLessonReview"
     property string taskText: "taskText"
     property string rightAnswerText: "rightAnswer"
-    property string linkPath: "main.qml"
+    property string linkPath: "default_page.qml"
     property string userName: ""
     property string currentCourse: "ru_en_categories"
     property string ex1_task_answer: ""
@@ -75,9 +84,19 @@ Item {
             console.log("onEndOfTheLesson review", endOftheLesson, review)
             textOfTheLessonReview = review
         }
-        function onSendUserName(name) {
-            userName = name
+        function onAttemptToLogin(value){
+            if (value){
+                linkPath = "/courses/course1.qml"
+            }
+            else {
+                linkPath = "/get_started/registration.qml"
+            }
         }
+        function onEmailExists       (value){emailExists    =value}
+        function onEmailValidation   (value){emailIsValid   =value}
+        function onLoginExists       (value){loginExists    =value}
+        function onLoginValidation   (value){loginIsValid   =value}
+        function onPasswordValidation(value){passwordIsValid=value}
     }
 
     onEx1_task_answerChanged: {
@@ -93,7 +112,6 @@ Item {
     }
 
     function setDefaultSettings() {
-
         typeOfTheExercise = 0
         points =  0
         lesson_lenght =  0
@@ -108,12 +126,11 @@ Item {
         textOfTheLessonReview =  "textOfTheLessonReview"
         taskText = "taskText"
         rightAnswerText =  "rightAnswer"
-        linkPath = "main.qml"
+        linkPath = "default_page.qml"
         userName = ""
         currentCourse = "ru_en_categories"
         ex1_task_answer = ""
         title = "Type in translation to English"
         placeholder = "Type in English"
-
     }
 }

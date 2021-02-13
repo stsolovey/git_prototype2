@@ -30,26 +30,39 @@ private:
 
     QVector<Task2> statistic;
     void addLessonStatistic(QVector<Task2> stat);
-
+    //void validateEmail(QString email);
+    //void checkIfEmailExists(QString email);
 signals:
     void sendProgressBarValue(int progressBarValue);
     void rightAnswer(QString rightAns);
     void wrongAnswer(QString wrongAns);
-    void sendUserName(QString userName);
-    void sendActualDirection(QString actualDirection);
     void sendCourse();
     void sendExercise(int typeOfTheExercise, QString textOfTheExercise);
     void sendLessonInfo(int lessonLenght);
     void sendReview(bool value, QString message);
     void endOfTheLesson(QString);
+    void attemptToLogin(bool value);
+    //void checkIfLoginExists(QString login);
+    void emailValidation(bool value);
+    void emailExists(bool value);
+    void loginValidation(bool value);
+    void loginExists(bool value);
+    void passwordValidation(bool value);
 public slots:
 
+    void createDefaultAccount();
     void rebuildStatSentences();
-    void askUserName();
-    void askActualDirection();
     void askForClass(int id_category);
     void askForExercise();
     void checkAnswer(QString answer);
+    void userRegistration(int age, QString login, QString email, QString password);
+    void userLogin();
+    void checkEmail(QString email);
+    void checkLogin(QString login);
+    void checkPassword(QString password);
+
+
+
 };
 
 #endif // APPCORE_H

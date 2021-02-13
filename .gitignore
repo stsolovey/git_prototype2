@@ -1,1 +1,1 @@
-prototype2.pro.user
+select all sentence from ru_en_sentences left join ru_en_categories on ru_en_sentences.id_cat = ru_en_categories.id_cat;

@@ -10,7 +10,8 @@ class ListModel : public QSqlQueryModel
 public:
     enum Roles {
         IdRole = Qt::UserRole + 1,      // id
-        NameRole,                      // имя
+        NameRole, // имя
+        EnabledRole
     };
     explicit ListModel(QObject *parent = 0);
     QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const;

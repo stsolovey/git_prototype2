@@ -31,37 +31,28 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
-
+//import Util 1.0
 Window {
     id: windowid
     visible: true
-    width: 640
-    height: 480
+    width: 480
+    height: 640
     title: qsTr("Atom.")
-    /*Item {
-        id: headerId
-        Text {
-            id: leftHeaderText
-            anchors.left: parent.left
-            text: "currentCourse"
-        }
-        Text {
-            id: rightHeaderText
-            anchors.right: parent.right
-            text: "slusla"
-        }
-    }*/
 
     Component.onCompleted: {
-        appCore.askUserName()
-        loader.source = "mainPageContent.qml"
+        appCore.userLogin()
+        loader.hide();
+        loader.source =  Util.linkPath ;
     }
 
     Loader {
         id: loader
         anchors.fill: parent
+        function show(string_source) {source = string_source;}
+        function hide()
+        {
+            source = "";
+            sourceComponent = undefined;
+        }
     }
-
-
-
 }
