@@ -6,7 +6,7 @@ Item {
     Component.onCompleted: {
 
 
-        appCore.userLogin()
+        //appCore.userLogin()
         loader.hide();
         loader.source =  Util.linkPath ;
 

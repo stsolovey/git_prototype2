@@ -142,6 +142,10 @@ Item {
                         !Util.emailExists &
                         Util.emailIsValid &
                         Util.passwordIsValid)
+            textInputAgeId.text = ""
+            textInputNameId.text = ""
+            textInputMailId.text = ""
+            textInputPasswordId.text = ""
         }
 
     }

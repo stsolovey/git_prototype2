@@ -56,7 +56,7 @@ public slots:
     void askForExercise();
     void checkAnswer(QString answer);
     void userRegistration(int age, QString login, QString email, QString password);
-    void userLogin();
+    void userLogin(QString enteredLogin, QString enteredPassword);
     void checkEmail(QString email);
     void checkLogin(QString login);
     void checkPassword(QString password);

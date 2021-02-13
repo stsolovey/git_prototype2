@@ -109,6 +109,7 @@ void AppCore::checkAnswer(QString answer)
 
 void AppCore::userRegistration(int age, QString login, QString email, QString password)
 {
+
     qDebug() << "age " << age << "login" << login << "email" << email << "password" << password;
     UserRegisterData urd(age, login, email, password);
     CreateAccount ca;
@@ -116,10 +117,11 @@ void AppCore::userRegistration(int age, QString login, QString email, QString pa
     //if (ca.create(urd))
 }
 
-void AppCore::userLogin()
+void AppCore::userLogin(QString enteredLogin, QString enteredPassword)
 {
     UserLogin ul;
-    emit attemptToLogin(ul.login());
+    bool value{ul.login(enteredLogin, enteredPassword)};
+    emit attemptToLogin(value);
 }
 
 void AppCore::checkEmail(QString email)
