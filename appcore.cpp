@@ -21,6 +21,7 @@ AppCore::AppCore(QObject* parent) : QObject(parent)
     userName = "NameOfUser";
     actualDirection = "ru_en";
     exerciseNumber = 0;
+    qDebug() << "AppCore constructor is working";
 }
 AppCore::~AppCore()
 {

@@ -40,9 +40,12 @@ Window {
     title: qsTr("Atom.")
 
     Component.onCompleted: {
+        console.log("main.qml working")
         //appCore.userLogin()
-        loader.hide();
-        loader.source =  Util.linkPath ;
+        //loader.hide();
+        //loader.source =  Util.linkPath ;
+        loader.source =  "mainPageContent.qml" ;
+
     }
 
     Loader {

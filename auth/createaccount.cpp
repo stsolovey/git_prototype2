@@ -11,7 +11,7 @@ CreateAccount::CreateAccount()
 
 bool CreateAccount::create(UserRegisterData urd)
 {
-    QStringToMd5 stringToMd5;
+    StringToMd5 stringToMd5;
     QSqlQuery query;
 
     QString user_login{urd.login()};

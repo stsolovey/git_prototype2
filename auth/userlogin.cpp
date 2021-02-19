@@ -2,10 +2,11 @@
 #include <QSqlQuery>
 #include <QVariant>
 #include "auth/checkifuserexists.h"
+#include <QDebug>
 
 UserLogin::UserLogin()
 {
-
+    qDebug() << "UserLogin constructor is working";
 }
 
 bool UserLogin::login(QString enteredLogin, QString enteredPass)
@@ -16,7 +17,7 @@ bool UserLogin::login(QString enteredLogin, QString enteredPass)
 
 
     QSqlQuery query;
-    QString queryString{"SELECT user_login, user_auth_key "
+    QString queryString{"SELECT user_login, user_auth_key, device_accesskey "
                         "FROM user_login_table "
                         "WHERE user_login = " + enteredLogin + ";"};
     query.exec(queryString);

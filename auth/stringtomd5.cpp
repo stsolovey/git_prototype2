@@ -1,12 +1,13 @@
 #include "stringtomd5.h"
 #include <QCryptographicHash>
+#include <QDebug>
 
-QStringToMd5::QStringToMd5()
+StringToMd5::StringToMd5()
 {
-
+    qDebug() << "UserLogin constructor is working";
 }
 
-QString QStringToMd5::convert(QString str)
+QString StringToMd5::convert(QString str)
 {
     return QString(QCryptographicHash::hash( ( qPrintable(str) ),QCryptographicHash::Md5).toHex());
 }

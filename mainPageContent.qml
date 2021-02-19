@@ -31,9 +31,9 @@ Item {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: btn1.horizontalCenter
         anchors.bottomMargin: windowid.height/4
-        text: "I ALREADY HAVE AN ACCOUNT"
+        text: "Unit Tests"
         onClicked: {
-            loader.source = "/login_form.qml"
+            loader.source = "qmlunittests/UnitTests.qml"
         }
     }
 }

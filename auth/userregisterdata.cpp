@@ -1,8 +1,9 @@
 #include "userregisterdata.h"
+#include <QDebug>
 
 UserRegisterData::UserRegisterData()
 {
-
+    qDebug() << "UserRegisterData constructor is working";
 }
 UserRegisterData::UserRegisterData(int age, QString login, QString email, QString pass)
     : m_age(age), m_login(login), m_email(email), m_pass(pass)

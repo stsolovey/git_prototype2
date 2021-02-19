@@ -2,10 +2,10 @@
 #define STRINGTOMD5_H
 #include <QString>
 
-class QStringToMd5
+class StringToMd5
 {
 public:
-    QStringToMd5();
+    StringToMd5();
     QString convert(QString str);
 };
 

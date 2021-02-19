@@ -20,5 +20,6 @@
         <file>get_started/registration.qml</file>
         <file>default_page.qml</file>
         <file>get_started/user_login.qml</file>
+        <file>qmlunittests/UnitTests.qml</file>
     </qresource>
 </RCC>

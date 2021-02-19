@@ -8,6 +8,9 @@ CONFIG += c++11
 
 SOURCES += \
         appcore.cpp \
+        auth/accesscodegenerate.cpp \
+        auth/accesscoderead.cpp \
+        auth/accesscodewrite.cpp \
         auth/checkifuserexists.cpp \
         auth/createaccount.cpp \
         auth/createemptyaccount.cpp \
@@ -15,6 +18,7 @@ SOURCES += \
         auth/generaterandomusername.cpp \
         auth/loginvalidate.cpp \
         auth/passwordvalidate.cpp \
+        auth/sourceandencriptedstringscompare.cpp \
         auth/stringtomd5.cpp \
         auth/userlogin.cpp \
         auth/userregisterdata.cpp \
@@ -27,6 +31,7 @@ SOURCES += \
         lesson/task3.cpp \
         main.cpp \
         statistics/rebuildsentencestatcombinations.cpp \
+        unittests/unittest.cpp \
         usefulclasses/randomlettersandnumbers.cpp
 
 RESOURCES += qml.qrc
@@ -44,6 +49,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     appcore.h \
+    auth/accesscodegenerate.h \
+    auth/accesscoderead.h \
+    auth/accesscodewrite.h \
     auth/checkifuserexists.h \
     auth/createaccount.h \
     auth/createemptyaccount.h \
@@ -51,6 +59,7 @@ HEADERS += \
     auth/generaterandomusername.h \
     auth/loginvalidate.h \
     auth/passwordvalidate.h \
+    auth/sourceandencriptedstringscompare.h \
     auth/stringtomd5.h \
     auth/userlogin.h \
     auth/userregisterdata.h \
@@ -62,4 +71,5 @@ HEADERS += \
     lesson/task2.h \
     lesson/task3.h \
     statistics/rebuildsentencestatcombinations.h \
+    unittests/unittest.h \
     usefulclasses/randomlettersandnumbers.h

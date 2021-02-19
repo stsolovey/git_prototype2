@@ -2,6 +2,7 @@
 
 Connection::Connection(QObject *parent) : QObject(parent)
 {
+    qDebug() << "Connection constructor is working";
     openDataBase();
 }
 Connection::~Connection()

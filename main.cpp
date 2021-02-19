@@ -3,7 +3,7 @@
 #include <QtQml>
 #include <QQmlContext>
 #include "appcore.h"
-//#include "connection.h"
+#include "unittests/unittest.h"
 
 #include "lesson/listmodel_course.h"
 int main(int argc, char *argv[])
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
 
 
-    qmlRegisterSingletonType(QUrl("qrc:/Util.qml"), "Util", 1, 0, "Util");
+    qmlRegisterSingletonType(QUrl("qrc:/Util.qml"), "Util", 1, 0, "Util");    
 
     /*****/
     QQmlApplicationEngine engine;
@@ -31,13 +31,12 @@ int main(int argc, char *argv[])
     context->setContextProperty("appCore", &appCore);
     /*****/
 
-
+    UnitTest ut;
+    context->setContextProperty("unitTest", &ut);
     // Объявляем и инициализируем модель данных
     ListModel *model = new ListModel();
     context->setContextProperty("myModel", model);
-    /*****/
-
-
+    /*****/    
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
         &app, [url](QObject *obj, const QUrl &objUrl) {

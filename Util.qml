@@ -2,7 +2,9 @@ pragma Singleton // Указываем, что этот QML Тип являет�
 import QtQuick 2.0
 
 Item {
-
+    //Connections: { // устанавливаем соединение
+        //target: unitTest
+    //}
     Component.onCompleted: {
 
         console.log("Util is working")
