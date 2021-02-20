@@ -23,6 +23,7 @@ SOURCES += \
         auth/userlogin.cpp \
         auth/userregisterdata.cpp \
         database/connection.cpp \
+        database/isdatabaseentryexists.cpp \
         database/statistic.cpp \
         lesson/lesson.cpp \
         lesson/listmodel_course.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     auth/userlogin.h \
     auth/userregisterdata.h \
     database/connection.h \
+    database/isdatabaseentryexists.h \
     database/statistic.h \
     lesson/lesson.h \
     lesson/listmodel_course.h \

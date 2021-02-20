@@ -11,8 +11,10 @@ class AccessCodeRead
 public:
     AccessCodeRead();
     bool isFileExist();
-    bool isAccessCodeExists();
+    bool isAccessCodeExistsInFile();
+    bool isAccessCodeExistsInDataBase();
     QString readAccessCodeFromFile();
+    QString readAccessCodeFromDatabase();
     QString getAccessCode() const;
 };
 #endif // READACCESSCODE_H

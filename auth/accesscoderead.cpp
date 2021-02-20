@@ -16,7 +16,7 @@ bool AccessCodeRead::isFileExist()
     }
 }
 
-bool AccessCodeRead::isAccessCodeExists()
+bool AccessCodeRead::isAccessCodeExistsInFile()
 {
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
@@ -58,6 +58,11 @@ QString AccessCodeRead::readAccessCodeFromFile()
         else
             return "";
     }
+}
+
+QString AccessCodeRead::readAccessCodeFromDatabase()
+{
+
 }
 
 QString AccessCodeRead::getAccessCode() const
