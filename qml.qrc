@@ -21,5 +21,6 @@
         <file>default_page.qml</file>
         <file>get_started/user_login.qml</file>
         <file>qmlunittests/UnitTests.qml</file>
+        <file>qmlunittests/AccessCodeUnitTest.qml</file>
     </qresource>
 </RCC>

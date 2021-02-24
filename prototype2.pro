@@ -8,9 +8,11 @@ CONFIG += c++11
 
 SOURCES += \
         appcore.cpp \
+        auth/accesscode.cpp \
         auth/accesscodegenerate.cpp \
         auth/accesscoderead.cpp \
         auth/accesscodewrite.cpp \
+        auth/authentification.cpp \
         auth/checkifuserexists.cpp \
         auth/createaccount.cpp \
         auth/createemptyaccount.cpp \
@@ -50,9 +52,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     appcore.h \
+    auth/accesscode.h \
     auth/accesscodegenerate.h \
     auth/accesscoderead.h \
     auth/accesscodewrite.h \
+    auth/authentification.h \
     auth/checkifuserexists.h \
     auth/createaccount.h \
     auth/createemptyaccount.h \

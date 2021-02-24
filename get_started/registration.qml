@@ -246,7 +246,7 @@ Item {
 
         }
         onClicked: {
-            appCore.createDefaultAccount()
+            //appCore.createDefaultAccount()
             //loader.source = "/mainPageContent.qml"
         }
 
