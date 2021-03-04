@@ -25,6 +25,8 @@ Item {
     property bool emailExists: true
     property bool emailIsValid: false
     property bool passwordIsValid: false
+    property bool resultOfAccessCodeComparision: false
+    property bool resultOfAuthentification: false
     property string textOfTheExcercise: "textOfTheExcercise"
     property string textOfTheReview: "textOfTheReview"
     property string textOfTheLessonReview: "textOfTheLessonReview"
@@ -99,6 +101,9 @@ Item {
         function onLoginExists       (value){loginExists    =value}
         function onLoginValidation   (value){loginIsValid   =value}
         function onPasswordValidation(value){passwordIsValid=value}
+        function onResultOfAccessCodeFromDeviceAndFromDatabaseComparision(value){
+        resultOfAccessCodeComparision = value}
+        function onResultOfAutentification(value){resultOfAuthentification = value}
     }
 
     onEx1_task_answerChanged: {

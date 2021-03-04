@@ -1,9 +1,12 @@
 #ifndef UNITTEST_H
 #define UNITTEST_H
 #include <QObject>
+
+#include "auth/accesscode.h"
 #include "auth/accesscodegenerate.h"
 #include "auth/accesscoderead.h"
 #include "auth/accesscodewrite.h"
+#include "auth/authentification.h"
 #include "auth/stringtomd5.h"
 
 
@@ -21,6 +24,10 @@ public slots:
     void accessCodeWrite();
     void stringToMd5();
     void accessCodeWriteToDataBase(QString login, QString code);
+    void writeGeneratedAccessCode();
+    void authentification(QString loginFromUserInput, QString passwordFromUserInput);
+    void authorisation(Authentification auth);
+    void compareAccessCodeFromFileAndFromDataBaseUnitTest();
 };
 
 #endif // UNITTEST_H

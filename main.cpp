@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
 
+    qmlRegisterSingletonType(QUrl("qrc:/Util.qml"), "Util", 1, 0, "Util");
 
-    qmlRegisterSingletonType(QUrl("qrc:/Util.qml"), "Util", 1, 0, "Util");    
 
     /*****/
     QQmlApplicationEngine engine;
@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
     AppCore appCore;
     context->setContextProperty("appCore", &appCore);
     /*****/
+
+
 
     UnitTest ut;
     context->setContextProperty("unitTest", &ut);

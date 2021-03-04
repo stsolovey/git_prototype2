@@ -5,6 +5,20 @@
 #include <QVector>
 #include "lesson/lesson.h"
 #include "statistics/rebuildsentencestatcombinations.h"
+#include "lesson/lesson.h"
+#include "database/statistic.h"
+#include "database/connection.h"
+#include "database/connection.h"
+#include "auth/userlogin.h"
+#include "auth/createaccount.h"
+#include "auth/userregisterdata.h"
+#include "auth/emailvalidate.h"
+#include "auth/generaterandomusername.h"
+#include "auth/checkifuserexists.h"
+#include "auth/loginvalidate.h"
+#include "auth/passwordvalidate.h"
+#include "auth/accesscode.h"
+#include "auth/authentification.h"
 class AppCore : public QObject
 {
     Q_OBJECT
@@ -48,6 +62,8 @@ signals:
     void loginValidation(bool value);
     void loginExists(bool value);
     void passwordValidation(bool value);
+    void resultOfAccessCodeFromDeviceAndFromDatabaseComparision(bool value);
+    void resultOfAutentification(bool value);
 public slots:
 
     void createDefaultAccount();
@@ -60,6 +76,10 @@ public slots:
     void checkEmail(QString email);
     void checkLogin(QString login);
     void checkPassword(QString password);
+    void authentification(QString loginFromUserInput, QString passwordFromUserInput);
+    void authorisation(Authentification auth);
+    void compareAccessCodeFromFileAndFromDataBaseSlot();
+
 
 
 

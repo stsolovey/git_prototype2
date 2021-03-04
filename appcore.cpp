@@ -1,18 +1,6 @@
 #include "appcore.h"
 #include <QDebug>
 #include <QSqlQuery>
-#include "lesson/lesson.h"
-#include "database/statistic.h"
-#include "database/connection.h"
-#include "database/connection.h"
-#include "auth/userlogin.h"
-#include "auth/createaccount.h"
-#include "auth/userregisterdata.h"
-#include "auth/emailvalidate.h"
-#include "auth/generaterandomusername.h"
-#include "auth/checkifuserexists.h"
-#include "auth/loginvalidate.h"
-#include "auth/passwordvalidate.h"
 
 AppCore::AppCore(QObject* parent) : QObject(parent)
 {
@@ -192,6 +180,34 @@ void AppCore::checkPassword(QString password)
     }
 }
 
+void AppCore::authentification(QString loginFromUserInput, QString passwordFromUserInput)
+{
+    Authentification auth;
+    auth.setUserLoginFromUserInput(loginFromUserInput);
+    auth.setPasswordFromUserInput(passwordFromUserInput);
+    auth.setPasswordFromDatabase();
+    auth.checkIfAuthentificationSucceed();
+    emit resultOfAutentification(auth.getAuthentificationSucceed());
+    qDebug() << "AuthentificationSucceed " << auth.getAuthentificationSucceed() << Qt::endl;
+    if (auth.getAuthentificationSucceed())
+        authorisation(auth);
+}
+
+void AppCore::authorisation(Authentification auth)
+{
+    AccessCode accessCode;
+    accessCode.setUserLogin(auth.getUserLoginFromUserInput());
+    accessCode.generateAccessCode();
+    qDebug() << "access code is written: " << accessCode.writeGeneratedAccessCode();
+}
+
+void AppCore::compareAccessCodeFromFileAndFromDataBaseSlot()
+{
+    AccessCode accessCode;
+    bool result(accessCode.compareAccessCodeFromFileAndFromDataBase());
+    qDebug() << "result " << result;
+    emit resultOfAccessCodeFromDeviceAndFromDatabaseComparision(result);
+}
 
 void AppCore::rebuildStatSentences()
 {

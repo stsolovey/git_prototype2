@@ -2,11 +2,11 @@
 #define AUTHENTIFICATION_H
 #include <QString>
 
+
 class Authentification
 {
     QString userLoginFromUserInput;
     QString passwordFromUserInput;
-    QString userLoginFromDatabase;
     QString passwordFromDatabase;
     bool authentificationSucceed;
 public:
@@ -15,10 +15,10 @@ public:
 
     void setUserLoginFromUserInput(const QString &value);
     void setPasswordFromUserInput(const QString &value);
-    void setUserLoginFromDatabase(const QString &value);
-    void setPasswordFromDatabase(const QString &value);
+    void setPasswordFromDatabase();
 
     bool getAuthentificationSucceed() const;
+    QString getUserLoginFromUserInput() const;
 };
 
 #endif // AUTHENTIFICATION_H

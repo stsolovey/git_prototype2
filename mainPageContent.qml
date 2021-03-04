@@ -12,6 +12,17 @@ Item {
         text: "Learn a language. Forever."
 
     }
+    Component.onCompleted: {
+        appCore.compareAccessCodeFromFileAndFromDataBaseSlot()
+        console.log("Util.resultOfAccessCodeComparision", Util.resultOfAccessCodeComparision)
+        if (Util.resultOfAccessCodeComparision) {
+            loader.source = "/courses/course1.qml"
+        }
+        else {
+            loader.source =  "/get_started/registration.qml"
+        }
+        console.log("Util.resultOfAccessCodeComparision", Util.resultOfAccessCodeComparision)
+    }
 
     Button
     {

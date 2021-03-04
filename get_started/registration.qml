@@ -4,10 +4,6 @@ import QtQuick.Controls.Styles 1.4
 import Util 1.0
 
 Item {
-    //Connections { // устанавливаем соединение
-        //target: appCore // целевой объект для соединения
-        //}
-
     id: itemID
     anchors.centerIn: parent
     property int textFieldWidth: 200
@@ -22,9 +18,7 @@ Item {
         anchors.topMargin: 25
         text: "Создайте профиль"
         font.bold: true
-
     }
-
     TextField  {
         id: textInputAgeId
         anchors.top: textid.bottom
@@ -32,13 +26,11 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         width: textFieldWidth
         background: Rectangle {
-
             radius: 3
             border {
                 width: 1
                 color: "lightgray"
             }
-
         }
         placeholderText: qsTr("Возраст")
         validator: IntValidator {bottom: 1; top: 99}
@@ -75,8 +67,6 @@ Item {
             }
         }
         placeholderText: qsTr("Электронная почта")
-
-
         onTextChanged: {
             appCore.checkEmail(textInputMailId.text)
 
@@ -84,7 +74,6 @@ Item {
             //validation(text);
         }
     }
-
     TextField  {
         id: textInputPasswordId
         anchors.top: textInputMailId.bottom
@@ -219,7 +208,15 @@ Item {
 
         }
         onClicked: {
-            loader.source = "/mainPageContent.qml"
+            //loader.source = "/mainPageContent.qml"
+            appCore.authentification(textFieldLoginId.text, textFieldPasswordId.text)
+            if (Util.resultOfAuthentification){
+            appCore.compareAccessCodeFromFileAndFromDataBaseSlot()
+            }
+            if (Util.resultOfAccessCodeComparision) {
+                loader.source = "/courses/course1.qml"
+            }
+            console.log("login", textFieldLoginId.text, "password", textFieldPasswordId.text)
         }
 
     }
@@ -248,6 +245,7 @@ Item {
         onClicked: {
             //appCore.createDefaultAccount()
             //loader.source = "/mainPageContent.qml"
+
         }
 
     }
