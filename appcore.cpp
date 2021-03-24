@@ -1,6 +1,8 @@
 #include "appcore.h"
 #include <QDebug>
 #include <QSqlQuery>
+#include <QSettings>
+#include <QCoreApplication>
 
 AppCore::AppCore(QObject* parent) : QObject(parent)
 {
@@ -10,6 +12,9 @@ AppCore::AppCore(QObject* parent) : QObject(parent)
     actualDirection = "ru_en";
     exerciseNumber = 0;
     qDebug() << "AppCore constructor is working";
+
+    readConfig();
+    //rebuildStatSentences();
 }
 AppCore::~AppCore()
 {
@@ -28,8 +33,11 @@ void AppCore::createClass(int id_category)
 
 void AppCore::correctClass(int index)
 {
+    Q_UNUSED(index)
     lesson.remove(exerciseNumber);
 }
+
+
 
 void AppCore::createDefaultAccount()
 {
@@ -196,17 +204,44 @@ void AppCore::authentification(QString loginFromUserInput, QString passwordFromU
 void AppCore::authorisation(Authentification auth)
 {
     AccessCode accessCode;
+    userName = auth.getUserLoginFromUserInput();
     accessCode.setUserLogin(auth.getUserLoginFromUserInput());
-    accessCode.generateAccessCode();
+
+    //accessCode.generateAccessCode();
     qDebug() << "access code is written: " << accessCode.writeGeneratedAccessCode();
 }
 
 void AppCore::compareAccessCodeFromFileAndFromDataBaseSlot()
 {
     AccessCode accessCode;
-    bool result(accessCode.compareAccessCodeFromFileAndFromDataBase());
+    accessCode.setUserLogin(userName);
+    bool result = accessCode.compareAccessCodeFromFileAndFromDataBase();
     qDebug() << "result " << result;
     emit resultOfAccessCodeFromDeviceAndFromDatabaseComparision(result);
+}
+
+
+
+void AppCore::readConfig()
+{
+    QSettings settings(qApp->applicationDirPath()+"/settings.ini",QSettings::IniFormat);
+    settings.beginGroup("Settings");
+    {
+        userName = settings.value("userName", "userName").toString();
+        //actualDirection = settings.value("actualDirection", "actualDirection").toString();
+    }
+    settings.endGroup();
+}
+
+void AppCore::writeConfig()
+{
+    QSettings settings(qApp->applicationDirPath()+"/settings.ini",QSettings::IniFormat);
+    settings.beginGroup("Settings");
+    {
+        settings.setValue("userName", userName);
+        //settings.setValue("actualDirection", "actualDirection");
+    }
+    settings.endGroup();
 }
 
 void AppCore::rebuildStatSentences()

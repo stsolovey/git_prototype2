@@ -60,10 +60,7 @@ QString AccessCodeRead::readAccessCodeFromFile()
     }
 }
 
-QString AccessCodeRead::readAccessCodeFromDatabase()
-{
 
-}
 
 QString AccessCodeRead::getAccessCode() const
 {

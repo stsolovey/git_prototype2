@@ -9,7 +9,7 @@ Item {
         anchors.bottom: btn1.top
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottomMargin: windowid.height/4
-        text: "Learn a language. Forever."
+        text: "Learn a language."
 
     }
     Component.onCompleted: {
@@ -17,6 +17,7 @@ Item {
         console.log("Util.resultOfAccessCodeComparision", Util.resultOfAccessCodeComparision)
         if (Util.resultOfAccessCodeComparision) {
             loader.source = "/courses/course1.qml"
+            //loader.source =  "/get_started/registration.qml"
         }
         else {
             loader.source =  "/get_started/registration.qml"

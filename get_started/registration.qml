@@ -211,11 +211,14 @@ Item {
             //loader.source = "/mainPageContent.qml"
             appCore.authentification(textFieldLoginId.text, textFieldPasswordId.text)
             if (Util.resultOfAuthentification){
+
             appCore.compareAccessCodeFromFileAndFromDataBaseSlot()
             }
             if (Util.resultOfAccessCodeComparision) {
+
                 loader.source = "/courses/course1.qml"
             }
+            console.log("Util.resultOfAccessCodeComparision from registration.qml", Util.resultOfAccessCodeComparision)
             console.log("login", textFieldLoginId.text, "password", textFieldPasswordId.text)
         }
 

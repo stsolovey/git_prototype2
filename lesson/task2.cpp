@@ -1,40 +1,5 @@
 #include "task2.h"
 
-void Task2::setId(int id)
-{
-    m_id = id;
-}
-
-void Task2::setDirection(int direction)
-{
-    m_direction = direction;
-}
-
-void Task2::setCourse(int course)
-{
-    m_course = course;
-}
-
-void Task2::setCategory(int category)
-{
-    m_category = category;
-}
-
-void Task2::setSentence(int sentence)
-{
-    m_sentence = sentence;
-}
-
-void Task2::setType(int type)
-{
-    m_type = type;
-}
-
-void Task2::setAnswer_status(int answer_status)
-{
-    m_answer_status = answer_status;
-}
-
 Task2::Task2(){}
 
 Task2::Task2(int id, int direction, int course, int category, int sentence, int type, bool answer_status) :
@@ -97,3 +62,37 @@ int Task2::id() const
 
 
 
+void Task2::setId(int id)
+{
+    m_id = id;
+}
+
+void Task2::setDirection(int direction)
+{
+    m_direction = direction;
+}
+
+void Task2::setCourse(int course)
+{
+    m_course = course;
+}
+
+void Task2::setCategory(int category)
+{
+    m_category = category;
+}
+
+void Task2::setSentence(int sentence)
+{
+    m_sentence = sentence;
+}
+
+void Task2::setType(int type)
+{
+    m_type = type;
+}
+
+void Task2::setAnswer_status(int answer_status)
+{
+    m_answer_status = answer_status;
+}

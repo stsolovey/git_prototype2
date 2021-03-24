@@ -6,47 +6,48 @@
 RebuildSentenceStatCombinations::RebuildSentenceStatCombinations()
 {
     qDebug() << "RebuildSentenceStatCombinations constructor is working.";
-    QSqlQuery querySentId;
-    QSqlQuery querySentStatId;
+    QSqlQuery queryWithAllSentences;
+    QSqlQuery queryWithAllSentencesFromStatisticTable;
     QSqlQuery queryInsert;
+
     //QList<int> directionId;
     //QList<int> courseId;
-    QList<int> sentId;
-    QList<int> sentStatId;
-
-    QString queryStringSentId = "SELECT * FROM public.ru_en_sentences";
-    QString queryStringSentStatId = "SELECT sentence FROM public.user_slusla_sentences_stat";
+    QList<int> listWithIdOfAllSentences;
+    QList<int> listWithIdOfAllSentencesFromStatisticTable;
+    int userId = 13;
+    QString queryStringWithAllSentences = "SELECT * FROM public.ru_en_sentences";
+    QString queryStringWithAllSentencesFromUserStatisticTable = "SELECT sentence FROM public.user_slusla_sentences_stat where userid = %1";
     QString insertString;
 
-    querySentId.exec(queryStringSentId);
-    querySentStatId.exec(queryStringSentStatId);
-    qDebug() << "querySentId.lastError " << querySentId.lastError();
-    qDebug() << "querySentStatId.lastError " << querySentStatId.lastError();
-    while (querySentId.next())
+    queryWithAllSentences.exec(queryStringWithAllSentences);
+    queryWithAllSentencesFromStatisticTable.exec(queryStringWithAllSentencesFromUserStatisticTable.arg(userId));
+    qDebug() << "querySentId.lastError " << queryWithAllSentences.lastError();
+    qDebug() << "querySentStatId.lastError " << queryWithAllSentencesFromStatisticTable.lastError();
+    while (queryWithAllSentences.next())
     {
-        qDebug() << "query.value(0).toInt() " << querySentId.value(0).toInt();
-        sentId.append(querySentId.value(0).toInt());
+        qDebug() << "query.value(0).toInt() " << queryWithAllSentences.value(0).toInt();
+        listWithIdOfAllSentences.append(queryWithAllSentences.value(0).toInt());
     }
 
-    while (querySentStatId.next())
+    while (queryWithAllSentencesFromStatisticTable.next())
     {
-        qDebug() << "query.value(0).toInt() " << querySentStatId.value(0).toInt();
-        sentStatId.append(querySentStatId.value(0).toInt());
+        qDebug() << "query.value(0).toInt() " << queryWithAllSentencesFromStatisticTable.value(0).toInt();
+        listWithIdOfAllSentencesFromStatisticTable.append(queryWithAllSentencesFromStatisticTable.value(0).toInt());
     }
 
-    for (auto a : sentId)
+    for (auto sentenceIdFromListOfAllStentences : listWithIdOfAllSentences)
     {
-        qDebug() << "a: " << a;
-        if (sentStatId.contains(a)) //sentId.removeAt(sentId.indexOf(a));
+        qDebug() << "a: " << sentenceIdFromListOfAllStentences;
+        if (listWithIdOfAllSentencesFromStatisticTable.contains(sentenceIdFromListOfAllStentences)) //sentId.removeAt(sentId.indexOf(a));
             ;
         else
         {
             insertString = "INSERT INTO "
                            "public.user_slusla_sentences_stat "
-                           "(direction, course, sentence, type_of_exercise, number_of_repetitions, right_answers, wrong_answers) "
-                           "VALUES(1,1,%1,1, 0, 0, 0) ";
-            qDebug() << "insertString.arg(a): " << insertString.arg(a);
-            queryInsert.exec(insertString.arg(a));
+                           "(direction, course, sentence, type_of_exercise, number_of_repetitions, right_answers, wrong_answers, userid) "
+                           "VALUES(1,1,%1,1, 0, 0, 0, %2) ";
+            qDebug() << "insertString.arg(a): " << insertString.arg(sentenceIdFromListOfAllStentences);
+            queryInsert.exec(insertString.arg(sentenceIdFromListOfAllStentences).arg(userId));
             qDebug() << "queryInsert.lastError " << queryInsert.lastError();
         }
 

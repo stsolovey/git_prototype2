@@ -14,7 +14,7 @@ public:
     bool isAccessCodeExistsInFile();
     bool isAccessCodeExistsInDataBase();
     QString readAccessCodeFromFile();
-    QString readAccessCodeFromDatabase();
+    //QString readAccessCodeFromDatabase();
     QString getAccessCode() const;
 };
 #endif // READACCESSCODE_H

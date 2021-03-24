@@ -29,6 +29,8 @@ public:
     void createClass(int id_category);
     void correctClass(int index);
     void setTasksLeft(int tLeft);
+    void readConfig();
+    void writeConfig();
 private:
     int m_progressBarValue;
     int userId;

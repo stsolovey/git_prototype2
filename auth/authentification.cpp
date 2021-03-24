@@ -2,31 +2,13 @@
 #include "stringtomd5.h"
 #include <QSqlQuery>
 #include <QVariant>
-
-bool Authentification::getAuthentificationSucceed() const
-{
-    return authentificationSucceed;
-}
-
-QString Authentification::getUserLoginFromUserInput() const
-{
-    return userLoginFromUserInput;
-}
-
 Authentification::Authentification()
 {
-
 }
-
-void Authentification::checkIfAuthentificationSucceed()
-{
-    StringToMd5 stringToMd5;
-    authentificationSucceed = stringToMd5.convert(passwordFromUserInput) == passwordFromDatabase;
-}
-
 void Authentification::setUserLoginFromUserInput(const QString &value)
 {
     userLoginFromUserInput = value;
+
 }
 
 void Authentification::setPasswordFromUserInput(const QString &value)
@@ -45,3 +27,21 @@ void Authentification::setPasswordFromDatabase()
 
     passwordFromDatabase = query.value(0).toString();
 }
+bool Authentification::getAuthentificationSucceed() const
+{
+    return authentificationSucceed;
+}
+
+QString Authentification::getUserLoginFromUserInput() const
+{
+    return userLoginFromUserInput;
+}
+
+void Authentification::checkIfAuthentificationSucceed()
+{
+    StringToMd5 stringToMd5;
+    bool flag = stringToMd5.convert(passwordFromUserInput) == passwordFromDatabase;
+    authentificationSucceed = flag;
+}
+
+

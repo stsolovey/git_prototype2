@@ -36,6 +36,9 @@ public:
     void setUserLogin(const QString &value);
     void setAccessCodeFromDataBase(const QString &value);
 
+
+    void readConfig();
+    void writeConfig();
 };
 
 #endif // ACCESSCODE_H

@@ -33,6 +33,7 @@ SOURCES += \
         lesson/task2.cpp \
         lesson/task3.cpp \
         main.cpp \
+        settings/settings.cpp \
         sqlmanager/sqlmanager.cpp \
         statistics/rebuildsentencestatcombinations.cpp \
         unittests/unittest.cpp \
@@ -77,6 +78,7 @@ HEADERS += \
     lesson/task.h \
     lesson/task2.h \
     lesson/task3.h \
+    settings/settings.h \
     sqlmanager/sqlmanager.h \
     statistics/rebuildsentencestatcombinations.h \
     unittests/unittest.h \
